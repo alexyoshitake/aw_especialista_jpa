@@ -4,14 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Cliente {
+public class Estoque {
 
 	@Id
 	private Integer id;
 
-	private String nome;
+	private Integer produtoId;
 
-	private SexoCliente sexo;
+	private Integer quantidade;
 
 	public Integer getId() {
 		return id;
@@ -21,20 +21,20 @@ public class Cliente {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public Integer getProdutoId() {
+		return produtoId;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setProdutoId(Integer produtoId) {
+		this.produtoId = produtoId;
 	}
 
-	public SexoCliente getSexo() {
-		return sexo;
+	public Integer getQuantidade() {
+		return quantidade;
 	}
 
-	public void setSexo(SexoCliente sexo) {
-		this.sexo = sexo;
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class Cliente {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		Estoque other = (Estoque) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

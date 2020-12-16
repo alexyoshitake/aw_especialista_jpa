@@ -1,17 +1,21 @@
 package com.algaworks.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Cliente {
+public class NotaFiscal {
 
 	@Id
 	private Integer id;
 
-	private String nome;
+	private Integer pedidoId;
 
-	private SexoCliente sexo;
+	private String xml;
+
+	private Date dataEmissao;
 
 	public Integer getId() {
 		return id;
@@ -21,20 +25,28 @@ public class Cliente {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public Integer getPedidoId() {
+		return pedidoId;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setPedidoId(Integer pedidoId) {
+		this.pedidoId = pedidoId;
 	}
 
-	public SexoCliente getSexo() {
-		return sexo;
+	public String getXml() {
+		return xml;
 	}
 
-	public void setSexo(SexoCliente sexo) {
-		this.sexo = sexo;
+	public void setXml(String xml) {
+		this.xml = xml;
+	}
+
+	public Date getDataEmissao() {
+		return dataEmissao;
+	}
+
+	public void setDataEmissao(Date dataEmissao) {
+		this.dataEmissao = dataEmissao;
 	}
 
 	@Override
@@ -53,7 +65,7 @@ public class Cliente {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		NotaFiscal other = (NotaFiscal) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
