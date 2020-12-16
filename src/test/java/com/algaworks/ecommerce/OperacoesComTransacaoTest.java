@@ -10,6 +10,22 @@ import com.algaworks.model.Produto;
 public class OperacoesComTransacaoTest extends EntityManagerTest {
 
 	@Test
+	public void impedirOperacaoComBancoDeDados() {
+		Produto produto = entityManager.find(Produto.class, 1);
+		entityManager.detach(produto);
+
+		entityManager.getTransaction().begin();
+		produto.setNome("Kindle Paperwite 2ª geração");
+		entityManager.getTransaction().commit();
+
+		entityManager.clear();
+
+		Produto produtoVerificacao = entityManager.find(Produto.class, produto.getId());
+		Assert.assertEquals("Kindle", produtoVerificacao.getNome());
+
+	}
+
+	@Test
 	public void mostrarDiferencaPersistMerge() {
 
 		Produto produtoPersist = new Produto();
@@ -28,23 +44,23 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
 
 		Produto produtoVerificacao = entityManager.find(Produto.class, produtoPersist.getId());
 		Assert.assertNotNull(produtoVerificacao);
-		
+
 		//
-		
+
 		Produto produtoMerge = new Produto();
-		
+
 		produtoMerge.setId(6);
 		produtoMerge.setNome("Notebook Dell");
 		produtoMerge.setDescricao("O melhor da categoria.");
 		produtoMerge.setValor(new BigDecimal("2000"));
-		
+
 		entityManager.getTransaction().begin();
 		produtoMerge = entityManager.merge(produtoMerge);
 		produtoMerge.setNome("Notebook Dell 2");
 		entityManager.getTransaction().commit();
-		
+
 		entityManager.clear();
-		
+
 		Produto produtoVerificacaoMerge = entityManager.find(Produto.class, produtoMerge.getId());
 		Assert.assertNotNull(produtoVerificacaoMerge);
 
