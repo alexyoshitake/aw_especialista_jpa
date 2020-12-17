@@ -1,11 +1,14 @@
 package com.algaworks.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +23,9 @@ public class Cliente {
 
 	@Enumerated(EnumType.STRING)
 	private SexoCliente sexo;
+
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos;
 
 	public Integer getId() {
 		return id;
@@ -43,6 +49,14 @@ public class Cliente {
 
 	public void setSexo(SexoCliente sexo) {
 		this.sexo = sexo;
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
 	}
 
 	@Override
