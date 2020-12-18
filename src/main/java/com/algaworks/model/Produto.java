@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,10 +28,11 @@ public class Produto {
 	private BigDecimal valor;
 
 	@ManyToMany
-	@JoinTable(name = "produto_categoria", 
-			   joinColumns = @JoinColumn(name = "produto_id"), 
-			   inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+	@JoinTable(name = "produto_categoria", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private List<Categoria> categorias;
+
+	@OneToOne(mappedBy = "produto")
+	private Estoque estoque;
 
 	public Integer getId() {
 		return id;
