@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,8 +19,9 @@ public class NotaFiscal {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column(name = "pedido_id")
-	private Integer pedidoId;
+	@OneToOne
+	@JoinColumn(name = "pedido_id")
+	private Pedido pedido;
 
 	private String xml;
 
@@ -33,12 +36,12 @@ public class NotaFiscal {
 		this.id = id;
 	}
 
-	public Integer getPedidoId() {
-		return pedidoId;
+	public Pedido getPedido() {
+		return pedido;
 	}
 
-	public void setPedidoId(Integer pedidoId) {
-		this.pedidoId = pedidoId;
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
 
 	public String getXml() {
