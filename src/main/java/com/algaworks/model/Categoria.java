@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -27,6 +28,9 @@ public class Categoria {
 
 	@OneToMany(mappedBy = "categoriaPai")
 	private List<Categoria> categorias;
+
+	@ManyToMany(mappedBy = "categorias")
+	private List<Produto> produtos;
 
 	public Integer getId() {
 		return id;
@@ -58,6 +62,14 @@ public class Categoria {
 
 	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
+	}
+
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
 	@Override
