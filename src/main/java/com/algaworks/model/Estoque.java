@@ -1,11 +1,10 @@
 package com.algaworks.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,9 +15,8 @@ public class Estoque {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToOne(optional = false)
-	@JoinColumn(name = "produto_id")
-	private Produto produto;
+	@Column(name = "produto_id")
+	private Integer produtoId;
 
 	private Integer quantidade;
 
@@ -30,12 +28,12 @@ public class Estoque {
 		this.id = id;
 	}
 
-	public Produto getProduto() {
-		return produto;
+	public Integer getProdutoId() {
+		return produtoId;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public void setProdutoId(Integer produtoId) {
+		this.produtoId = produtoId;
 	}
 
 	public Integer getQuantidade() {
